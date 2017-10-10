@@ -91,6 +91,10 @@ export default {
       type: [Number, String],
       default: 0,
     },
+    itemsByRow: {
+      type: Number,
+      default: 1,
+    },
   },
 
   data: () => ({
@@ -215,9 +219,9 @@ export default {
         } else {
           // Fixed height mode
           const buffer = this.buffer
-          const poolSize = this.poolSize
-          startIndex = ~~((~~(scroll.top / itemHeight) - buffer) / poolSize) * poolSize
-          endIndex = ~~((Math.ceil(scroll.bottom / itemHeight) + buffer) / poolSize) * poolSize
+          startIndex = (~~(~~(scroll.top / itemHeight) - buffer))
+          startIndex += startIndex % this.itemsByRow
+          endIndex = ~~(Math.ceil(scroll.bottom / itemHeight) + buffer)
         }
 
         if (startIndex < 0) {
