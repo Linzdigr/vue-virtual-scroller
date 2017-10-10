@@ -220,7 +220,7 @@ export default {
           // Fixed height mode
           const buffer = this.buffer
           startIndex = (~~(~~(scroll.top / itemHeight) - buffer))
-          startIndex += startIndex % this.itemsByRow
+          startIndex -= startIndex % this.itemsByRow
           endIndex = ~~(Math.ceil(scroll.bottom / itemHeight) + buffer)
         }
 
