@@ -1,5 +1,5 @@
 <template>
-  <component :is="mainTag" class="virtual-scroller" :class="cssClass" @scroll="handleScroll" v-observe-visibility="handleVisibilityChange">
+  <component :is="mainTag" class="virtual-scroller" :class="cssClass" @scroll="handleScroll" v-observe-visibility="handleVisibilityChange" ref="vscrollContainer">
     <slot name="before-container"></slot>
     <component :is="containerTag" class="item-container" :class="containerClass" :style="itemContainerStyle">
       <slot name="before-content"></slot>
@@ -91,9 +91,9 @@ export default {
       type: [Number, String],
       default: 0,
     },
-    itemsByRow: {
+    itemWidth: {
       type: Number,
-      default: 1,
+      default: null,
     },
   },
 
@@ -218,11 +218,12 @@ export default {
           }
         } else {
           // Fixed height mode
-          const buffer = this.buffer * this.itemsByRow
+          const itemsByRow = ~~(this.$refs.vscrollContainer.getBoundingClientRect().width / this.itemWidth)
+          const buffer = this.buffer * (itemsByRow)
 
           startIndex = (~~(~~(scroll.top / itemHeight) - buffer))
-          startIndex -= startIndex % this.itemsByRow
-          endIndex = ~~(Math.ceil(scroll.bottom / itemHeight) + buffer)
+          startIndex -= startIndex % itemsByRow
+          endIndex = Math.ceil(scroll.bottom / itemHeight) + buffer
         }
 
         if (startIndex < 0) {
