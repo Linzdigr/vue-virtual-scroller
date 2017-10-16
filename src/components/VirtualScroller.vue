@@ -41,10 +41,6 @@ export default {
     renderers: {
       default: null,
     },
-    itemHeight: {
-      type: [Number, String],
-      default: null,
-    },
     typeField: {
       type: String,
       default: 'type',
@@ -92,7 +88,11 @@ export default {
       default: 0,
     },
     itemWidth: {
-      type: Number,
+      type: [Number, String],
+      default: null,
+    },
+    itemHeight: {
+      type: [Number, String],
       default: null,
     },
   },
@@ -225,7 +225,7 @@ export default {
           }
           const buffer = this.buffer * (itemsByRow)
 
-          startIndex = (~~(~~(scroll.top / itemHeight) - buffer))
+          startIndex = ~~(~~(scroll.top / itemHeight) - buffer)
           startIndex -= startIndex % itemsByRow
           endIndex = Math.ceil(scroll.bottom / itemHeight) + buffer
         }
