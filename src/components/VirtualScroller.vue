@@ -239,7 +239,7 @@ export default {
 
         if (itemHeight !== null) {
           // Fixed height mode
-          offsetTop = (~~(l / itemsByRow)) * this.itemHeight
+          offsetTop = Math.ceil(startIndex / itemsByRow) * this.itemHeight
           containerHeight = Math.ceil(l / itemsByRow) * this.itemHeight
         }
 
