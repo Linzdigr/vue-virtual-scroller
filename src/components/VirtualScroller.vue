@@ -240,7 +240,7 @@ export default {
         if (itemHeight !== null) {
           // Fixed height mode
           offsetTop = startIndex * itemHeight
-          containerHeight = (l + (Math.ceil(l / itemsByRow) - l)) * itemHeight
+          containerHeight = Math.ceil(l / itemsByRow) * this.itemHeight
         }
 
         if (force || startIndex !== this._startIndex || endIndex !== this._endIndex || l !== this._length) {
