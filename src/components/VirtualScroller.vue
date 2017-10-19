@@ -182,7 +182,7 @@ export default {
       if (this.itemWidth) {
         itemsByRow = ~~(this.$refs.vscrollContainer.getBoundingClientRect().width / this.itemWidth)
       }
-      const itemHeight = (this.itemHeight / itemsByRow)
+      const itemHeight = Math.ceil(this.itemHeight / itemsByRow)
       let containerHeight, offsetTop
       if (scroll) {
         let startIndex = -1
@@ -225,7 +225,7 @@ export default {
           // Fixed height mode
           const buffer = this.buffer * (itemsByRow)
 
-          startIndex = ~~(~~(scroll.top / itemHeight) - buffer)
+          startIndex = ~~(scroll.top / itemHeight) - buffer
           startIndex -= startIndex % itemsByRow
           endIndex = Math.ceil(scroll.bottom / itemHeight) + buffer
         }
