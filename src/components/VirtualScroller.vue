@@ -239,9 +239,8 @@ export default {
 
         if (itemHeight !== null) {
           // Fixed height mode
-          let nbRow = Math.ceil(l / itemsByRow)
-          offsetTop = (nbRow - 1) * itemHeight
-          containerHeight = nbRow * this.itemHeight
+          offsetTop = (~~(l / itemsByRow)) * itemHeight
+          containerHeight = Math.ceil(l / itemsByRow) * this.itemHeight
         }
 
         if (force || startIndex !== this._startIndex || endIndex !== this._endIndex || l !== this._length) {
