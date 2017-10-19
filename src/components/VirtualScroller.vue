@@ -240,7 +240,7 @@ export default {
         if (itemHeight !== null) {
           // Fixed height mode
           let nbRow = Math.ceil(l / itemsByRow)
-          offsetTop = nbRow * itemHeight
+          offsetTop = (nbRow - 1) * itemHeight
           containerHeight = nbRow * this.itemHeight
         }
 
