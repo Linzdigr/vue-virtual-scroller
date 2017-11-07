@@ -182,7 +182,7 @@ export default {
       if (this.itemWidth) {
         itemsByRow = ~~(this.$refs.vscrollContainer.getBoundingClientRect().width / this.itemWidth)
       }
-      const itemHeight = Math.ceil(this.itemHeight / itemsByRow)
+      const itemHeight = Math.floor(this.itemHeight / itemsByRow)
       let containerHeight, offsetTop
       if (scroll) {
         let startIndex = -1
