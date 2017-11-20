@@ -226,7 +226,7 @@ export default {
           const buffer = this.buffer * (itemsByRow)
 
           startIndex = (scroll.top / itemHeight) - buffer
-          startIndex -= ~~(startIndex % itemsByRow)
+          startIndex -= startIndex % itemsByRow
           endIndex = Math.ceil(scroll.bottom / itemHeight) + buffer
         }
 
@@ -239,7 +239,7 @@ export default {
 
         if (itemHeight !== null) {
           // Fixed height mode
-          offsetTop = ~~((startIndex / itemsByRow) * this.itemHeight)
+          offsetTop = ~~(startIndex / itemsByRow * this.itemHeight)
           containerHeight = Math.ceil(l / itemsByRow) * this.itemHeight
         }
 
